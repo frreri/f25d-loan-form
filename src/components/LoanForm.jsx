@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { formSchema } from "../validations/loanFormValidation";
-// Importing savedForm and emptyForm (savedForm will be same as emptyForm if no savedForm in local storage)
-import { savedForm, emptyForm } from "../data/storage";
+import storageHandler from "../data/storage";
 
 function LoanForm() {
-  const [formData, setFormData] = useState(savedForm);
+  const [formData, setFormData] = useState(storageHandler.savedForm);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    localStorage.setItem("formData", JSON.stringify(formData));
+    storageHandler.saveForm(formData);
   }, [formData]);
 
   const handleValueChange = (e) =>
@@ -18,7 +17,7 @@ function LoanForm() {
     setFormData({ ...formData, [e.target.name]: e.target.checked });
 
   const clearForm = () => {
-    setFormData(emptyForm);
+    setFormData(storageHandler.emptyForm);
     setErrors({});
   };
 
