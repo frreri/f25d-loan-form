@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+#root {
+  @apply m-4 flex min-h-lvh items-center justify-center;
+}
+
+form div {
+  @apply mb-4 flex flex-col;
+}
+
+input {
+  @apply rounded-sm border-2 border-gray-400;
+}
