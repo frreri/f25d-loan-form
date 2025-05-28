@@ -21,7 +21,9 @@ class StorageHandler {
 
   saveForm(formObj) {
     localStorage.setItem("formData", JSON.stringify(formObj));
+    this.savedForm = formObj;
   }
 }
 
+// Exporting a new instance of the class, using a singleton approach
 export default new StorageHandler();
