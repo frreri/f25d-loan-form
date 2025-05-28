@@ -8,6 +8,12 @@ form div {
   @apply mb-4 flex flex-col;
 }
 
-input {
-  @apply rounded-sm border-2 border-gray-400;
+@layer utilities {
+  .form-field {
+    @apply h-7 rounded-sm border-2 border-gray-300 bg-white;
+  }
+}
+
+textarea {
+  @apply rounded-sm border-2 border-gray-300 bg-white;
 }
