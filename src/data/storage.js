@@ -9,5 +9,7 @@ export const emptyForm = {
   duration: "",
   message: "",
 };
-const savedForm = localStorage.getItem("formData");
-export const initialValues = savedForm ? JSON.parse(savedForm) : emptyForm;
+const savedFormString = localStorage.getItem("formData");
+export const savedForm = savedFormString
+  ? JSON.parse(savedFormString)
+  : emptyForm;

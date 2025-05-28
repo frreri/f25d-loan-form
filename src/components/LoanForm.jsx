@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { formSchema } from "../validations/loanFormValidation";
-// Importing initialValues, this will be form saved in local storage, or emptyForm if none exists
-import { initialValues, emptyForm } from "../data/storage";
+// Importing savedForm and emptyForm (savedForm will be same as emptyForm if no savedForm in local storage)
+import { savedForm, emptyForm } from "../data/storage";
 
 function LoanForm() {
-  const [formData, setFormData] = useState(initialValues);
+  const [formData, setFormData] = useState(savedForm);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {

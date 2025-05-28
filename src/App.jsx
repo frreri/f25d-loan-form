@@ -1,4 +1,3 @@
-import "./App.css";
 import LoanForm from "./components/LoanForm";
 
 function App() {
