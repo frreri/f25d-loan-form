@@ -115,7 +115,7 @@ function LoanForm() {
                 ]}
               />
               <InputValue
-                label="Loan amount"
+                label="Loan amount (USD)"
                 name="amount"
                 type="number"
                 data={formData}

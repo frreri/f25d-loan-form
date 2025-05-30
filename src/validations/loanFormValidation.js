@@ -2,7 +2,9 @@ import * as Yup from "yup";
 
 export const formSchema = Yup.object({
   fullName: Yup.string().required("Enter your name."),
-  phone: Yup.string().required("Enter your phone number."),
+  phone: Yup.string()
+    .matches(/^\d{10,11}$/, "Enter phone number with 10-11 digits")
+    .required("Enter your phone number."),
   age: Yup.number()
     .typeError("Enter your age as a number.")
     .min(18, "We don't offer loans to minors.")
