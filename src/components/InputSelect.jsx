@@ -1,6 +1,6 @@
 function InputSelect({ label, name, onChange, data, errors, options }) {
   return (
-    <div className="mb-2 flex flex-col">
+    <div className="mb-2 flex min-h-14 flex-col">
       <label htmlFor={name}>{label}</label>
       <select
         className="h-8 rounded-sm border-2 border-gray-300 bg-white p-1"
