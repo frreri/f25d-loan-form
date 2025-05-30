@@ -14,3 +14,5 @@ The following features are implemented:
 - Button to reset the form, which will prompt for confirmation, and only then restore form to defaults
 - Submitting form also restores default values
 - Success message view has a button to start a new loan request
+
+Live preview: [Click here!](https://frreri.github.io/f25d-loan-form/)
