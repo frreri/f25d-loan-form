@@ -1,19 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 
+body {
+  background: linear-gradient(#81a1c1, #8fbcbb);
+  color: #2e3440;
+}
+
 #root {
-  @apply m-4 flex min-h-lvh items-center justify-center;
-}
-
-form div {
-  @apply mb-2 flex flex-col;
-}
-
-@layer utilities {
-  .form-field {
-    @apply h-8 rounded-sm border-2 border-gray-300 bg-white p-1;
-  }
-}
-
-textarea {
-  @apply rounded-sm border-2 border-gray-300 bg-white;
+  font-family: "Inter", sans-serif;
+  @apply flex min-h-lvh items-center justify-center p-6;
 }

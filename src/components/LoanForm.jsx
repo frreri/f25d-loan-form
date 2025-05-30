@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { formSchema } from "../validations/loanFormValidation";
 import storageHandler from "../data/storage";
+import InputValue from "./InputValue";
+import InputCheckbox from "./InputCheckbox";
+import InputSelect from "./InputSelect";
+import WarningText from "./WarningText";
 
 function LoanForm() {
   const [formData, setFormData] = useState(storageHandler.savedForm);
@@ -34,130 +38,119 @@ function LoanForm() {
     }
   };
 
-  const errorMsg = (msg) => <p className="text-sm text-red-700">{msg}</p>;
-
   return (
-    <div className="rounded-md border-2 border-gray-200 bg-gray-50 p-4">
+    <div className="mb-2 flex flex-col rounded-md border-2 border-gray-200 bg-[#eceff4] p-4 shadow-lg">
+      <h1 className="text-2xl font-bold uppercase">React Bank</h1>
+      <h2 className="mb-2 text-lg">Loan Request Form</h2>
       <form
-        className="grid grid-cols-1 md:grid-cols-2 md:gap-x-4"
+        className="grid grid-cols-1 border-t-2 border-gray-200 pt-2 md:grid-cols-2 md:gap-x-4"
         onSubmit={handleSubmit}
       >
-        <div>
-          <div>
-            <label>Name</label>
-            <input
-              className="form-field"
-              name="fullName"
-              type="text"
-              value={formData.fullName}
-              onChange={handleValueChange}
-            />
-            {errors.fullName && errorMsg(errors.fullName)}
-          </div>
-          <div>
-            <label>Phone number</label>
-            <input
-              className="form-field"
-              name="phone"
-              type="text"
-              value={formData.phone}
-              onChange={handleValueChange}
-            />
-            {errors.phone && errorMsg(errors.phone)}
-          </div>
-          <div>
-            <label>Age</label>
-            <input
-              className="form-field"
-              name="age"
-              type="number"
-              value={formData.age}
-              onChange={handleValueChange}
-            />
-            {errors.age && errorMsg(errors.age)}
-          </div>
-          <div>
-            <label>Employed</label>
-            <input
-              name="employed"
-              type="checkbox"
-              checked={formData.employed}
-              onChange={handleCheckedChange}
-            />
-            {errors.employed && errorMsg(errors.employed)}
-          </div>
+        <div className="mb-2 flex flex-col">
+          <InputValue
+            label="Name"
+            name="fullName"
+            type="text"
+            data={formData}
+            onChange={handleValueChange}
+            errors={errors}
+          />
+          <InputValue
+            label="Phone number"
+            name="phone"
+            type="text"
+            data={formData}
+            onChange={handleValueChange}
+            errors={errors}
+          />
+          <InputValue
+            label="Age"
+            name="age"
+            type="number"
+            data={formData}
+            onChange={handleValueChange}
+            errors={errors}
+          />
+          <InputCheckbox
+            label="Employed?"
+            name="employed"
+            data={formData}
+            onChange={handleCheckedChange}
+            errors={errors}
+          />
         </div>
-        <div>
-          <div>
-            <label>Monthly salary</label>
-            <select
-              className="form-field"
-              name="salaryOption"
-              value={formData.salaryOption}
-              onChange={handleValueChange}
-            >
-              <option value="1">Less than $1000</option>
-              <option value="2">$1000 - $2000</option>
-              <option value="3">$2001 - $5000</option>
-              <option value="4">Over $5000</option>
-            </select>
-            {errors.salaryOption && errorMsg(errors.salaryOption)}
-          </div>
-          <div>
-            <label>Loan amount</label>
-            <input
-              className="form-field"
-              name="amount"
-              type="number"
-              value={formData.amount}
-              onChange={handleValueChange}
-            />
-            {errors.amount && errorMsg(errors.amount)}
-          </div>
-          <div>
-            <label>Loan reason</label>
-            <input
-              className="form-field"
-              name="reason"
-              type="text"
-              value={formData.reason}
-              onChange={handleValueChange}
-            />
-            {errors.reason && errorMsg(errors.reason)}
-          </div>
-          <div>
-            <label>Loan duration (in years)</label>
-            <input
-              className="form-field"
-              name="duration"
-              type="number"
-              value={formData.duration}
-              onChange={handleValueChange}
-            />
-            {errors.duration && errorMsg(errors.duration)}
-          </div>
+        <div className="mb-2 flex flex-col">
+          <InputSelect
+            label="Monthly salary"
+            name="salaryOption"
+            data={formData}
+            onChange={handleValueChange}
+            errors={errors}
+            options={[
+              "Less than $1000",
+              "$1000 - $2000",
+              "$2001 - $5000",
+              "Over $5000",
+            ]}
+          />
+          <InputValue
+            label="Loan amount"
+            name="amount"
+            type="number"
+            data={formData}
+            onChange={handleValueChange}
+            errors={errors}
+          />
+          <InputValue
+            label="Loan reason"
+            name="reason"
+            type="text"
+            data={formData}
+            onChange={handleValueChange}
+            errors={errors}
+          />
+          <InputValue
+            label="Loan duration (in years)"
+            name="duration"
+            type="number"
+            data={formData}
+            onChange={handleValueChange}
+            errors={errors}
+          />
         </div>
-        <div className="md:col-span-2">
-          <label>Message or additional info</label>
+        <div className="mb-2 flex flex-col md:col-span-2">
+          <label htmlFor="message">Additional information</label>
           <textarea
+            className="rounded-sm border-2 border-gray-300 bg-white"
+            id="message"
             name="message"
             value={formData.message}
             onChange={handleValueChange}
           />
-          {errors.message && errorMsg(errors.message)}
+          {errors.message && (
+            <p className="text-sm text-red-700">{errors.message}</p>
+          )}
         </div>
+        {formData.salaryOption === "1" && (
+          <WarningText text="A salary of less than $1000 will impact your chances of getting approved for a loan." />
+        )}
         <button
-          className="w-full cursor-pointer bg-green-600 px-4 py-2 hover:bg-green-700 md:col-span-2"
+          className="w-full cursor-pointer rounded-sm bg-[#a3be8c] px-4 py-2 font-semibold hover:bg-[#839e6c] md:col-span-2"
           type="submit"
         >
-          Send request
+          Send Request
         </button>
       </form>
       <button
-        className="mt-2 w-full cursor-pointer bg-amber-600 px-4 py-2 hover:bg-amber-700"
-        onClick={clearForm}
+        className="mt-2 w-full cursor-pointer rounded-sm bg-[#d08770] px-4 py-2 font-semibold hover:bg-[#b06750]"
+        onClick={() => {
+          const confirmReset = confirm(
+            "Are you sure you want to reset the form?",
+          );
+          if (confirmReset) clearForm();
+        }}
       >
-        Clear form
+        Reset Form
       </button>
     </div>
   );

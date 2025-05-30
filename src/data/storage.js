@@ -5,7 +5,7 @@ class StorageHandler {
       phone: "",
       age: "",
       employed: false,
-      salaryOption: "1",
+      salaryOption: "3",
       amount: "",
       reason: "",
       duration: "",
