@@ -9,7 +9,7 @@ function ButtonReset({ handleReset }) {
         if (confirmReset) handleReset();
       }}
     >
-      Reset Form
+      Reset Form<i className="fa-solid fa-trash ml-2"></i>
     </button>
   );
 }

@@ -4,7 +4,7 @@ function ButtonNew({ onClick }) {
       className="mt-4 w-full cursor-pointer rounded-sm bg-[#5e81ac] px-4 py-2 font-semibold hover:bg-[#81a1c1] md:col-span-2"
       onClick={onClick}
     >
-      New Request
+      New Request<i className="fa-solid fa-file ml-2"></i>
     </button>
   );
 }
