@@ -58,7 +58,7 @@ function LoanForm() {
   };
 
   return (
-    <div className="mb-2 flex min-w-80 flex-col rounded-md border-2 border-gray-200 bg-[#eceff4] p-4 shadow-lg">
+    <div className="mb-2 flex min-w-[346px] flex-col rounded-md border-2 border-gray-200 bg-[#eceff4] p-4 shadow-lg">
       {!isSubmitted && (
         <>
           <h1 className="text-2xl font-bold uppercase">React Bank</h1>

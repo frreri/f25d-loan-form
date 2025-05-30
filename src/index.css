@@ -8,5 +8,5 @@ body {
 
 #root {
   font-family: "Inter", sans-serif;
-  @apply flex min-h-lvh items-center justify-center p-6;
+  @apply flex min-h-lvh items-center justify-center py-10;
 }
